@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Иван — Портфолио</title>
-    <meta name="description" content="Портфолио Ивана — разработчика веб-сайтов, создающего чистый и удобный код">
-    <meta name="keywords" content="Иван, разработчик, веб-разработка, HTML, CSS, JavaScript, портфолио">
+    <meta name="description" content="Портфолио Ивана — разработчика веб-сайтов в стиле Watch Dogs 2">
+    <meta name="keywords" content="Иван, разработчик, веб-разработка, портфолио, Watch Dogs 2">
     <meta name="author" content="Иван">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta property="og:title" content="Иван — Портфолио">
@@ -16,7 +16,7 @@
 <body>
     <button id="theme-toggle" class="theme-toggle"><span class="icon-moon">🌙</span><span class="icon-sun">☀️</span></button>
     <header class="site-header">
-        <h1 class="name">Иван</h1>
+        <h1 class="name"><span class="neon">Иван</span></h1>
         <p class="tagline">Разработчик</p>
     </header>
 
@@ -29,13 +29,29 @@
             </p>
         </section>
 
+        <section id="bio" class="section bio">
+            <h2 class="section-title">Биография</h2>
+            <div class="bio-content">
+                <img src="my-photo.jpg" alt="Иван" class="profile-photo">
+                <p class="bio-text">
+                    Иван, 20 лет. Выпускник лицея-интерната №24 — учебного заведения,
+                    известного своей сильной школой программирования. Сегодня я — начинающий
+                    разработчик, который объединяет в себе лучшее от своих цифровых коллег:
+                    скорость Gemini, глубину DeepSeek, точность Qwen и креативность GPT.
+                    Я не просто учусь программировать — я строю мосты между человеком
+                    и искусственным интеллектом.
+                </p>
+            </div>
+        </section>
+
         <section id="skills" class="section skills">
             <h2 class="section-title">Мои навыки</h2>
             <ul class="skills-list">
-                <li>HTML, CSS, JavaScript</li>
-                <li>Создание адаптивных сайтов</li>
-                <li>Работа с git</li>
-                <li>Дизайн интерфейсов</li>
+                <li><a class="skill-link" href="skill.html?id=html">HTML</a></li>
+                <li><a class="skill-link" href="skill.html?id=css">CSS</a></li>
+                <li><a class="skill-link" href="skill.html?id=javascript">JavaScript</a></li>
+                <li><a class="skill-link" href="skill.html?id=responsive">Адаптивные сайты</a></li>
+                <li><a class="skill-link" href="skill.html?id=git">Git</a></li>
             </ul>
         </section>
     </main>
@@ -51,12 +67,12 @@
             <article class="project-card">
                 <h3 class="project-title">Веб-приложение</h3>
                 <p class="project-desc">Интерфейс с адаптивной версткой и современным дизайном.</p>
-                <a class="project-link" href="#">Смотреть</a>
+                <span class="project-link disabled">Разрабатываю</span>
             </article>
             <article class="project-card">
                 <h3 class="project-title">Утилита для разработчиков</h3>
                 <p class="project-desc">Инструмент для ускорения повседневных задач разработки.</p>
-                <a class="project-link" href="#">Смотреть</a>
+                <span class="project-link disabled">Разрабатываю</span>
             </article>
         </div>
     </section>

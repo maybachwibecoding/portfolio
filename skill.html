@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Навык — Иван — Портфолио</title>
+    <meta name="description" content="Страница навыка в портфолио Ивана — разработчика веб-сайтов">
+    <meta name="author" content="Иван">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button id="theme-toggle" class="theme-toggle"><span class="icon-moon">🌙</span><span class="icon-sun">☀️</span></button>
+
+    <div class="skill-page">
+        <a href="index.html" class="back-button">← Назад на главную</a>
+
+        <div id="skill-content">
+            <!-- Заполняется скриптом ниже -->
+        </div>
+
+        <div id="skill-not-found" class="skill-not-found" hidden>
+            <h1 class="skill-title">Навык не найден</h1>
+            <p class="skill-description">Проверьте адрес страницы или вернитесь на главную.</p>
+        </div>
+    </div>
+
+    <script src="skills-data.js"></script>
+    <script src="script.js"></script>
+    <script>
+        /* ============================================================
+           Страница навыка: читаем ?id=..., ищем данные в skillsData
+           и собираем разметку. Неизвестный id → «Навык не найден».
+           ============================================================ */
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            const skill = skillsData[id];
+
+            if (!skill) {
+                document.getElementById('skill-not-found').hidden = false;
+                return;
+            }
+
+            document.title = skill.title + ' — Иван — Портфолио';
+
+            const content = document.getElementById('skill-content');
+
+            const title = document.createElement('h1');
+            title.className = 'skill-title';
+            title.textContent = skill.title;
+
+            const description = document.createElement('p');
+            description.className = 'skill-description';
+            description.textContent = skill.description;
+
+            content.appendChild(title);
+            content.appendChild(description);
+
+            if (skill.details && skill.details.length) {
+                const detailsSection = document.createElement('section');
+                detailsSection.className = 'skill-section';
+                const detailsTitle = document.createElement('h2');
+                detailsTitle.className = 'skill-section-title';
+                detailsTitle.textContent = 'Подробнее';
+                detailsSection.appendChild(detailsTitle);
+
+                const list = document.createElement('ul');
+                list.className = 'skill-details-list';
+                skill.details.forEach(function (item) {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    list.appendChild(li);
+                });
+                detailsSection.appendChild(list);
+                content.appendChild(detailsSection);
+            }
+
+            if (skill.examples && skill.examples.length) {
+                const examplesSection = document.createElement('section');
+                examplesSection.className = 'skill-section';
+                const examplesTitle = document.createElement('h2');
+                examplesTitle.className = 'skill-section-title';
+                examplesTitle.textContent = 'Примеры';
+                examplesSection.appendChild(examplesTitle);
+
+                skill.examples.forEach(function (code) {
+                    const pre = document.createElement('pre');
+                    pre.className = 'skill-code';
+                    pre.textContent = code;
+                    examplesSection.appendChild(pre);
+                });
+                content.appendChild(examplesSection);
+            }
+        })();
+    </script>
+</body>
+</html>

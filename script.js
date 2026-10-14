@@ -6,27 +6,24 @@ applyTheme(localStorage.getItem(STORAGE_KEY) === 'true');
 themeToggle.addEventListener('click', (e) => { e.preventDefault(); const isLight = !body.classList.contains('light'); applyTheme(isLight); localStorage.setItem(STORAGE_KEY, isLight); });
 
 /* ============================================================
-   Scroll Spy: плавное свечение плашек, когда они попадают
-   в центр экрана. IntersectionObserver + CSS transition 0.6s.
+   Scroll Reveal: плавное появление и свечение плашек при прокрутке
+   IntersectionObserver + CSS transition.
    ============================================================ */
 
-const sections = document.querySelectorAll('.section');
+const revealElements = document.querySelectorAll('.section, .skills-list li, .contact-link, .project-card, .profile-photo');
 
-const spyObserver = new IntersectionObserver((entries) => {
+const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
-            // Подсвечиваем только ту секцию, что в центре viewport
-            sections.forEach((sec) => sec.classList.remove('active-section'));
-            entry.target.classList.add('active-section');
+            entry.target.classList.add('visible');
         } else {
-            // Плавно гасим, когда секция уходит из центра
-            entry.target.classList.remove('active-section');
+            entry.target.classList.remove('visible');
         }
     });
 }, {
     root: null,
-    rootMargin: '0px',
-    threshold: 0.5
+    rootMargin: '0px 0px -50px 0px',
+    threshold: 0.15
 });
 
-sections.forEach((section) => spyObserver.observe(section));
+revealElements.forEach((el) => revealObserver.observe(el));
